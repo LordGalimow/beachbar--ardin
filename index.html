@@ -325,6 +325,13 @@
             font-size: 0.95rem;
         }
 
+        /* Diszkrét impresszum sor a láblécben */
+        .dardin-footer-legal {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-bottom: 8px;
+        }
+
         @media (max-width: 768px) {
             .dardin-nav-links {
                 display: none;
@@ -443,11 +450,20 @@
 
     <!-- Lábléc -->
     <footer>
+        <!-- Ide jön majd az OIB / Impresszum adat a megbeszélés után -->
+        <div class="dardin-footer-legal">Beach bar Đardin | OIB: [Kitöltésre vár]</div>
         <p data-en="&copy; 2026 Beach bar Đardin. All rights reserved." data-hr="&copy; 2026 Beach bar Đardin. Sva prava pridržana.">&copy; 2026 Beach bar Đardin. All rights reserved.</p>
     </footer>
 
     <!-- Script -->
     <script>
+        // Biztosítja, hogy betöltéskor mindig a tetején (Hero szekciónál) nyíljon meg az oldal
+        window.addEventListener('load', () => {
+            if (!window.location.hash) {
+                window.scrollTo(0, 0);
+            }
+        });
+
         const toggleBtn = document.getElementById('lang-toggle');
         const langText = document.getElementById('lang-text');
         let currentLang = 'en';
