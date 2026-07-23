@@ -6,26 +6,40 @@
     <title>Beach bar Đardin</title>
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome ikonok -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Nyelvváltó gomb -->
-    <button id="lang-toggle" class="lang-btn">HR / EN</button>
+    <!-- Navigációs sáv -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Đardin</a>
+            <ul class="nav-links">
+                <li><a href="#about" data-en="About" data-hr="O nama">About</a></li>
+                <li><a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
+                <li><a href="#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
+                <li><a href="#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
+            </ul>
+            <!-- Szép, modern nyelvváltó gomb -->
+            <button id="lang-toggle" class="lang-btn">
+                <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
+            </button>
+        </div>
+    </nav>
 
     <!-- Hero szekció -->
     <header class="hero">
         <div class="hero-content">
             <h1 data-en="Beach bar Đardin" data-hr="Beach bar Đardin">Beach bar Đardin</h1>
             <p data-en="An oasis of relaxation, cold drinks, and the best sunsets on the beach." data-hr="Oaza opuštanja, hladnog pića i najboljih zalazaka sunca na plaži.">An oasis of relaxation, cold drinks, and the best sunsets on the beach.</p>
-            <a href="#kontakt" class="btn" data-en="Visit Us" data-hr="Posjetite nas">Visit Us</a>
+            <a href="#contact" class="btn" data-en="Visit Us" data-hr="Posjetite nas">Visit Us</a>
         </div>
     </header>
 
     <!-- Rólunk -->
-    <section class="about">
+    <section class="about" id="about">
         <div class="container">
             <h2 data-en="Welcome to Paradise" data-hr="Dobrodošli u raj">Welcome to Paradise</h2>
             <p data-en="Enjoy cold cocktails, premium coffee, and summer rhythms right by the sea. Your favorite spot to escape the summer heat in Kaštela." data-hr="Uživajte u hladnim koktelima, vrhunskoj kavi i ljetnim ritmovima uz samo more. Vaše omiljeno mjesto za bijeg od ljetnih vrućina u Kaštelima.">Enjoy cold cocktails, premium coffee, and summer rhythms right by the sea. Your favorite spot to escape the summer heat in Kaštela.</p>
@@ -33,7 +47,7 @@
     </section>
 
     <!-- Galéria szekció -->
-    <section class="gallery">
+    <section class="gallery" id="gallery">
         <div class="container">
             <h2 data-en="Gallery" data-hr="Galerija">Gallery</h2>
             <div class="gallery-grid">
@@ -48,7 +62,7 @@
     </section>
 
     <!-- Google Értékelések szekció -->
-    <section class="reviews">
+    <section class="reviews" id="reviews">
         <div class="container">
             <h2 data-en="What Our Guests Say" data-hr="Što kažu naši gosti?">What Our Guests Say</h2>
             <div class="reviews-grid">
@@ -71,18 +85,22 @@
     </section>
 
     <!-- Info / Kapcsolat -->
-    <section class="info" id="kontakt">
+    <section class="info" id="contact">
         <div class="container grid">
             <div class="info-box">
                 <i class="fa-solid fa-clock"></i>
                 <h3 data-en="Opening Hours" data-hr="Radno vrijeme">Opening Hours</h3>
                 <p data-en="Every day: 08:00 - 23:00" data-hr="Svaki dan: 08:00 - 23:00">Every day: 08:00 - 23:00</p>
             </div>
-            <div class="info-box">
+            
+            <!-- Interaktív Térkép Link -->
+            <a href="https://maps.google.com/?q=Beach+bar+Đardin+Kaštel+Stari" target="_blank" class="info-box clickable-box">
                 <i class="fa-solid fa-location-dot"></i>
                 <h3 data-en="Location" data-hr="Lokacija">Location</h3>
-                <p data-en="Right on the beach, Kaštel Stari" data-hr="Uz samu plažu, Kaštel Stari">Right on the beach, Kaštel Stari</p>
-            </div>
+                <p>Obala kralja Tomislava, Kaštel Stari</p>
+                <span class="map-hint" data-en="Click to open map" data-hr="Kliknite za kartu">Click to open map</span>
+            </a>
+
             <div class="info-box">
                 <i class="fa-solid fa-share-nodes"></i>
                 <h3 data-en="Social Media" data-hr="Društvene mreže">Social Media</h3>
@@ -102,11 +120,12 @@
     <!-- Nyelvváltó Script -->
     <script>
         const toggleBtn = document.getElementById('lang-toggle');
+        const langText = document.getElementById('lang-text');
         let currentLang = 'en';
 
         toggleBtn.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'hr' : 'en';
-            toggleBtn.textContent = currentLang === 'en' ? 'HR / EN' : 'EN / HR';
+            langText.textContent = currentLang === 'en' ? 'HR' : 'EN';
 
             document.querySelectorAll('[data-en]').forEach(element => {
                 if (currentLang === 'hr') {
