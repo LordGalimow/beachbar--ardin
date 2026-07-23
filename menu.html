@@ -60,7 +60,7 @@
 
         .dardin-nav-links {
             display: flex;
-            gap: 35px;
+            gap: 30px;
             list-style: none;
             align-items: center;
         }
@@ -75,6 +75,16 @@
 
         .dardin-nav-links a:hover {
             color: #ff6b00;
+        }
+
+        /* Mobil hamburger gomb */
+        .dardin-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #4a5568;
+            cursor: pointer;
         }
 
         /* Stílusos nyelvváltó gomb */
@@ -215,10 +225,30 @@
             margin-bottom: 8px;
         }
 
+        /* Mobil nézet beállítások */
         @media (max-width: 768px) {
-            .dardin-nav-links {
-                display: none;
+            .dardin-hamburger {
+                display: block;
             }
+
+            .dardin-nav-links {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                padding: 25px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+                display: none; /* Alapból rejtett */
+            }
+
+            .dardin-nav-links.active {
+                display: flex; /* Ha rákattintanak, lenyílik */
+            }
+
             .menu-header h1 {
                 font-size: 2.2rem;
             }
@@ -231,13 +261,19 @@
     <header class="dardin-navbar">
         <div class="dardin-nav-container">
             <a href="index.html" class="dardin-logo">Beach bar Đardin</a>
-            <ul class="dardin-nav-links">
+            
+            <button class="dardin-hamburger" id="hamburger-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="dardin-nav-links" id="nav-links">
                 <li><a href="index.html#about" data-en="About" data-hr="O nama">About</a></li>
                 <li><a href="index.html#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
                 <li><a href="index.html#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
                 <li><a href="menu.html" data-en="Menu" data-hr="Cjenik" style="color: #ff6b00; font-weight: 600;">Menu</a></li>
                 <li><a href="index.html#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
             </ul>
+
             <button id="lang-toggle" class="dardin-lang-btn">
                 <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
             </button>
@@ -372,8 +408,17 @@
         <p data-en="&copy; 2026 Beach bar Đardin. All rights reserved." data-hr="&copy; 2026 Beach bar Đardin. Sva prava pridržana.">&copy; 2026 Beach bar Đardin. All rights reserved.</p>
     </footer>
 
-    <!-- Script a nyelvváltáshoz -->
+    <!-- Script a mobil menühöz és nyelvváltáshoz -->
     <script>
+        // Mobil hamburger menü nyitás-zárás
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Nyelvváltó logika
         const toggleBtn = document.getElementById('lang-toggle');
         const langText = document.getElementById('lang-text');
         let currentLang = 'en';
