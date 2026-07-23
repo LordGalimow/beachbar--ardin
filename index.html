@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beach bar Đardin | Kaštel Stari</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome ikonok -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* Beépített stílus, hogy ne essen szét és azonnal betöltődjön */
         * {
             margin: 0;
             padding: 0;
@@ -19,436 +13,171 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            color: #2c3e50;
-            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
             line-height: 1.6;
-            padding-top: 80px;
         }
 
-        /* Fix tetejű modern navigációs sáv */
-        .dardin-navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            z-index: 1000;
+        /* Header / Hero Section */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('pictures/kep1.png') no-repeat center center/cover;
             display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
         }
 
-        .dardin-nav-container {
+        .nav-bar {
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
         }
 
-        .dardin-logo {
+        .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: #ff6b00;
-            text-decoration: none;
-            letter-spacing: 0.5px;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
-        .dardin-nav-links {
-            display: flex;
-            gap: 35px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .dardin-nav-links a {
-            text-decoration: none;
-            color: #4a5568;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .dardin-nav-links a:hover {
-            color: #ff6b00;
-        }
-
-        /* Stílusos nyelvváltó gomb */
-        .dardin-lang-btn {
-            background: #ff6b00;
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid white;
             color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25);
+            font-weight: bold;
+            transition: background 0.3s;
         }
 
-        .dardin-lang-btn:hover {
-            background: #e05e00;
-            transform: translateY(-2px);
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
 
-        /* Lebegő gyorshívó gomb */
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a365d;
+        }
+
+        section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        /* Floating Call Button */
         .dardin-float-call {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2e7d32;
             color: white;
             width: 60px;
             height: 60px;
             border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            transition: transform 0.3s ease;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
             text-decoration: none;
+            transition: transform 0.3s;
         }
 
         .dardin-float-call:hover {
             transform: scale(1.1);
         }
 
-        /* Hero szekció */
-        .dardin-hero {
-            height: calc(100vh - 80px);
-            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('pictures/kep1.png') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-
-        .dardin-hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .dardin-hero-content p {
-            font-size: 1.25rem;
-            margin-bottom: 30px;
-            font-weight: 300;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .dardin-btn {
-            display: inline-block;
-            padding: 14px 35px;
-            background-color: #ff6b00;
-            color: white;
-            text-decoration: none;
-            border-radius: 35px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
-        }
-
-        .dardin-btn:hover {
-            background-color: #e05e00;
-            transform: translateY(-2px);
-        }
-
-        /* Szekciók */
-        .dardin-section {
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .dardin-bg-alt {
-            background-color: #f8fafc;
-        }
-
-        .dardin-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        .dardin-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            color: #1a202c;
-        }
-
-        .dardin-section p {
-            color: #4a5568;
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.05rem;
-        }
-
-        /* Grid elemek */
-        .dardin-grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .dardin-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .dardin-gallery-item img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .dardin-gallery-item img:hover {
-            transform: scale(1.02);
-        }
-
-        .dardin-review-card {
-            background: white;
-            padding: 35px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            text-align: left;
-            border: 1px solid #e2e8f0;
-        }
-
-        .dardin-stars {
-            color: #f59e0b;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .dardin-review-card p {
-            font-style: italic;
-            color: #4a5568;
-            margin-bottom: 20px;
-        }
-
-        .dardin-author {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #718096;
-        }
-
-        .dardin-info-box {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            border: 1px solid #e2e8f0;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .dardin-info-box i {
-            font-size: 2.5rem;
-            color: #ff6b00;
-            margin-bottom: 20px;
-        }
-
-        .dardin-info-box h3 {
-            margin-bottom: 12px;
-            font-size: 1.25rem;
-            color: #1a202c;
-        }
-
-        .dardin-open-status {
-            display: inline-block;
-            margin-top: 15px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 6px 14px;
-            background: #edf2f7;
-            border-radius: 20px;
-        }
-
-        .dardin-clickable {
-            transition: all 0.3s ease;
-        }
-
-        .dardin-clickable:hover {
-            transform: translateY(-5px);
-            border-color: #ff6b00;
-            box-shadow: 0 15px 35px rgba(255, 107, 0, 0.1);
-        }
-
-        .dardin-map-hint {
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #ff6b00;
-            font-weight: 600;
-        }
-
-        .dardin-socials a {
-            display: inline-block;
-            margin: 0 12px;
-            font-size: 1.8rem;
-            color: #4a5568;
-            transition: color 0.3s ease;
-        }
-
-        .dardin-socials a:hover {
-            color: #ff6b00;
-        }
-
+        /* Footer */
         footer {
+            background-color: #1a365d;
+            color: white;
             text-align: center;
-            padding: 30px;
-            background-color: #1a202c;
-            color: #a0aec0;
-            font-size: 0.95rem;
-        }
-
-        @media (max-width: 768px) {
-            .dardin-nav-links {
-                display: none;
-            }
-            .dardin-hero-content h1 {
-                font-size: 2.5rem;
-            }
+            padding: 2rem;
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Gyorshívó gomb -->
-    <a href="tel:+385900000000" class="dardin-float-call" title="Call Us">
-        <i class="fa-solid fa-phone"></i>
-    </a>
-
-    <!-- Fix menüsor -->
-    <header class="dardin-navbar">
-        <div class="dardin-nav-container">
-            <a href="#" class="dardin-logo">Beach bar Đardin</a>
-            <ul class="dardin-nav-links">
-                <li><a href="#about" data-en="About" data-hr="O nama">About</a></li>
-                <li><a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
-                <li><a href="#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
-                <li><a href="#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
-            </ul>
-            <button id="lang-toggle" class="dardin-lang-btn">
-                <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
-            </button>
+    <!-- Header & Hero -->
+    <header>
+        <div class="nav-bar">
+            <div class="logo">Beach bar Đardin</div>
+            <button class="lang-btn" id="lang-toggle"><span id="lang-text">HR</span></button>
         </div>
+        <div class="hero-content">
+            <h1 data-en="Welcome to Beach bar Đardin" data-hr="Dobrodošli u Beach bar Đardin">Welcome to Beach bar Đardin</h1>
+            <p data-en="Enjoy your summer days right by the sea in Kaštel Stari." data-hr="Uživajte u ljetnim danima uz samo more u Kaštel Starom.">Enjoy your summer days right by the sea in Kaštel Stari.</p>
+            <div class="status-badge" id="open-status">Checking status...</div>
+        </div>
+        <div></div> <!-- Spacer for flex alignment -->
     </header>
 
-    <!-- Hero -->
-    <section class="dardin-hero">
-        <div class="dardin-hero-content">
-            <h1 data-en="Beach bar Đardin" data-hr="Beach bar Đardin">Beach bar Đardin</h1>
-            <p data-en="An oasis of relaxation, cold drinks, and the best sunsets on the beach." data-hr="Oaza opuštanja, hladnog pića i najboljih zalazaka sunca na plaži.">An oasis of relaxation, cold drinks, and the best sunsets on the beach.</p>
-            <a href="#contact" class="dardin-btn" data-en="Visit Us" data-hr="Posjetite nas">Visit Us</a>
-        </div>
+    <!-- About Section -->
+    <section id="about">
+        <h2 data-en="The Perfect Seaside Vibe" data-hr="Savršeni morski ugođaj">The Perfect Seaside Vibe</h2>
+        <p data-en="Located in the historic heart of Kaštel Stari, Beach bar Đardin offers refreshing cocktails, great music, and an unforgettable view of the Adriatic Sea. Relax under the palms and enjoy your vacation." data-hr="Smješten u povijesnom srcu Kaštel Starog, Beach bar Đardin nudi osvježavajuće koktele, odličnu glazbu i nezaboravan pogled na Jadransko more. Opustite se pod palmama i uživajte u odmoru.">Located in the historic heart of Kaštel Stari, Beach bar Đardin offers refreshing cocktails, great music, and an unforgettable view of the Adriatic Sea. Relax under the palms and enjoy your vacation.</p>
     </section>
 
-    <!-- Rólunk -->
-    <section class="dardin-section" id="about">
-        <div class="dardin-container">
-            <h2 data-en="Welcome to Paradise" data-hr="Dobrodošli u raj">Welcome to Paradise</h2>
-            <p data-en="Enjoy cold cocktails, premium coffee, and summer rhythms right by the sea. Your favorite spot to escape the summer heat in Kaštela." data-hr="Uživajte u hladnim koktelima, vrhunskoj kavi i ljetnim ritmovima uz samo more. Vaše omiljeno mjesto za bijeg od ljetnih vrućina u Kaštelima.">Enjoy cold cocktails, premium coffee, and summer rhythms right by the sea. Your favorite spot to escape the summer heat in Kaštela.</p>
-        </div>
-    </section>
+    <!-- Floating Call Button -->
+    <a href="tel:+385900000000" class="dardin-float-call" title="Call Us">📞</a>
 
-    <!-- Galéria -->
-    <section class="dardin-section dardin-bg-alt" id="gallery">
-        <div class="dardin-container">
-            <h2 data-en="Gallery" data-hr="Galerija">Gallery</h2>
-            <div class="dardin-grid-2">
-                <div class="dardin-gallery-item">
-                    <img src="pictures/kep1.png" alt="Beach bar Đardin cocktails">
-                </div>
-                <div class="dardin-gallery-item">
-                    <img src="pictures/kep2.png" alt="Beach bar Đardin beach view">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Értékelések -->
-    <section class="dardin-section" id="reviews">
-        <div class="dardin-container">
-            <h2 data-en="What Our Guests Say" data-hr="Što kažu naši gosti?">What Our Guests Say</h2>
-            <div class="dardin-grid-2">
-                <div class="dardin-review-card">
-                    <div class="dardin-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p data-en="&quot;Wonderful place right by the shore, the staff is super, and the cocktails are perfect for summer evenings!&quot;" data-hr="&quot;Prekrasno mjesto uz samu obalu, osoblje je super, a kokteli savršeni za ljetne večeri!&quot;">"Wonderful place right by the shore, the staff is super, and the cocktails are perfect for summer evenings!"</p>
-                    <span class="dardin-author">- Google Review</span>
-                </div>
-                <div class="dardin-review-card">
-                    <div class="dardin-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p data-en="&quot;Best sunset view and great atmosphere. Top recommendation!&quot;" data-hr="&quot;Najbolji pogled na zalazak sunca i odlična atmosfera. Top preporuka!&quot;">"Best sunset view and great atmosphere. Top recommendation!"</p>
-                    <span class="dardin-author">- Google Review</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kapcsolat -->
-    <section class="dardin-section dardin-bg-alt" id="contact">
-        <div class="dardin-container dardin-grid-3">
-            <div class="dardin-info-box">
-                <i class="fa-solid fa-clock"></i>
-                <h3 data-en="Opening Hours" data-hr="Radno vrijeme">Opening Hours</h3>
-                <p data-en="Every day: 08:00 - 23:00" data-hr="Svaki dan: 08:00 - 23:00">Every day: 08:00 - 23:00</p>
-                <span id="open-status" class="dardin-open-status">Checking status...</span>
-            </div>
-            
-            <a href="https://maps.google.com/?q=Beach+bar+Đardin+Kaštel+Stari" target="_blank" class="dardin-info-box dardin-clickable">
-                <i class="fa-solid fa-location-dot"></i>
-                <h3 data-en="Location" data-hr="Lokacija">Location</h3>
-                <p>Obala kralja Tomislava, Kaštel Stari</p>
-                <span class="dardin-map-hint" data-en="Click to open map" data-hr="Kliknite za kartu">Click to open map</span>
-            </a>
-
-            <div class="dardin-info-box">
-                <i class="fa-solid fa-share-nodes"></i>
-                <h3 data-en="Social Media" data-hr="Društvene mreže">Social Media</h3>
-                <div class="dardin-socials">
-                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lábléc -->
+    <!-- Footer -->
     <footer>
-        <p><strong>Beach bar Đardin</strong> | OIB: 12345678901 | Adresa: Obala kralja Tomislava, Kaštel Stari</p>
         <p data-en="&copy; 2026 Beach bar Đardin. All rights reserved." data-hr="&copy; 2026 Beach bar Đardin. Sva prava pridržana.">&copy; 2026 Beach bar Đardin. All rights reserved.</p>
     </footer>
 
-    <!-- Script -->
     <script>
+        // Oldal betöltésekor mindig a tetejére ugrik, ha nincs specifikus horgony a címsorban
+        window.addEventListener('load', () => {
+            if (!window.location.hash) {
+                window.scrollTo(0, 0);
+            }
+        });
+
         const toggleBtn = document.getElementById('lang-toggle');
         const langText = document.getElementById('lang-text');
         let currentLang = 'en';
