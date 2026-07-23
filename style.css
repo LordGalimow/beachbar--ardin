@@ -1,3 +1,4 @@
+/* Alapbeállítások és nullázás */
 * {
     margin: 0;
     padding: 0;
@@ -7,111 +8,112 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    color: #333;
-    background-color: #f9f9f9;
+    color: #2c3e50;
+    background-color: #ffffff;
     line-height: 1.6;
-    padding-top: 75px; /* Hogy a fix sáv ne takarja ki a tartalmat */
+    padding-top: 80px; /* Hogy a fix sáv ne takarja ki a tartalmat */
 }
 
-/* Fix tetejű, modern egy soros menüsor */
-.header-nav {
+/* Fix tetejű modern navigációs sáv */
+.dardin-navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 75px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    height: 80px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     z-index: 1000;
     display: flex;
     align-items: center;
 }
 
-.nav-container {
+.dardin-nav-container {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.nav-logo {
-    font-size: 1.25rem;
+.dardin-logo {
+    font-size: 1.5rem;
     font-weight: 700;
-    color: #ff7b00;
+    color: #ff6b00;
     text-decoration: none;
     letter-spacing: 0.5px;
 }
 
-.nav-menu {
+.dardin-nav-links {
     display: flex;
-    gap: 30px;
+    gap: 35px;
 }
 
-.nav-menu a {
+.dardin-nav-links a {
     text-decoration: none;
-    color: #444;
+    color: #4a5568;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 1rem;
     transition: color 0.3s ease;
 }
 
-.nav-menu a:hover {
-    color: #ff7b00;
+.dardin-nav-links a:hover {
+    color: #ff6b00;
 }
 
 /* Stílusos nyelvváltó gomb */
-.lang-btn {
-    background: #ff7b00;
+.dardin-lang-btn {
+    background: #ff6b00;
     color: white;
     border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 8px 18px;
+    border-radius: 30px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 2px 6px rgba(255, 123, 0, 0.3);
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25);
 }
 
-.lang-btn:hover {
-    background: #e06d00;
-    transform: translateY(-1px);
+.dardin-lang-btn:hover {
+    background: #e05e00;
+    transform: translateY(-2px);
 }
 
-/* Lebegő gyorshívó gomb mobilon */
-.float-call {
+/* Lebegő gyorshívó gomb */
+.dardin-float-call {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
+    bottom: 30px;
+    right: 30px;
     background-color: #25d366;
     color: white;
-    width: 55px;
-    height: 55px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-size: 1.6rem;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     z-index: 999;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease;
     text-decoration: none;
 }
 
-.float-call:hover {
+.dardin-float-call:hover {
     transform: scale(1.1);
 }
 
-/* Hero */
-.hero {
-    height: calc(100vh - 75px);
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('pictures/kep1.png') no-repeat center center/cover;
+/* Hero szekció */
+.dardin-hero {
+    height: calc(100vh - 80px);
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('pictures/kep1.png') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,211 +122,207 @@ body {
     padding: 0 20px;
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 15px;
+.dardin-hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
     font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
-.hero-content p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
+.dardin-hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
     font-weight: 300;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.btn {
+.dardin-btn {
     display: inline-block;
-    padding: 12px 30px;
-    background-color: #ff7b00;
+    padding: 14px 35px;
+    background-color: #ff6b00;
     color: white;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 35px;
     font-weight: 600;
-    transition: background 0.3s ease;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
 }
 
-.btn:hover {
-    background-color: #e06d00;
+.dardin-btn:hover {
+    background-color: #e05e00;
+    transform: translateY(-2px);
 }
 
-/* Konténerek */
-.container {
+/* Szekciók általános beállításai */
+.dardin-section {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.dardin-bg-alt {
+    background-color: #f8fafc;
+}
+
+.dardin-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 25px;
 }
 
-/* Rólunk */
-.about {
-    padding: 80px 0;
-    text-align: center;
-    background: white;
+.dardin-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #1a202c;
 }
 
-.about h2 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-}
-
-.about p {
-    color: #666;
+.dardin-section p {
+    color: #4a5568;
     max-width: 700px;
     margin: 0 auto;
+    font-size: 1.05rem;
 }
 
-/* Galéria */
-.gallery {
-    padding: 80px 0;
-    background-color: #f0f4f8;
-    text-align: center;
-}
-
-.gallery h2 {
-    font-size: 2.2rem;
-    margin-bottom: 30px;
-}
-
-.gallery-grid {
+/* Grid rendszerek */
+.dardin-grid-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-/* Értékelések */
-.reviews {
-    padding: 80px 0;
-    background: white;
-    text-align: center;
-}
-
-.reviews h2 {
-    font-size: 2.2rem;
-    margin-bottom: 30px;
-}
-
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.review-card {
-    background: #f9f9f9;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    text-align: left;
-}
-
-.stars {
-    color: #ffc107;
-    margin-bottom: 10px;
-}
-
-.review-card p {
-    font-style: italic;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.author {
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: #777;
-}
-
-/* Info rács */
-.info {
-    padding: 80px 0;
-    background-color: #f0f4f8;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    text-align: center;
+    margin-top: 40px;
 }
 
-.info-box {
+.dardin-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Galéria elemek */
+.dardin-gallery-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.dardin-gallery-item img:hover {
+    transform: scale(1.02);
+}
+
+/* Értékelés kártyák */
+.dardin-review-card {
     background: white;
-    padding: 30px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    display: block;
-    color: inherit;
-    text-decoration: none;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    text-align: left;
+    border: 1px solid #e2e8f0;
 }
 
-.info-box i {
-    font-size: 2.2rem;
-    color: #ff7b00;
+.dardin-stars {
+    color: #f59e0b;
     margin-bottom: 15px;
+    font-size: 1.1rem;
 }
 
-.info-box h3 {
-    margin-bottom: 10px;
+.dardin-review-card p {
+    font-style: italic;
+    color: #4a5568;
+    margin-bottom: 20px;
+    font-size: 1rem;
 }
 
-.open-status {
-    display: block;
-    margin-top: 10px;
+.dardin-author {
     font-weight: 600;
     font-size: 0.9rem;
+    color: #718096;
 }
 
-.clickable-box {
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    border: 2px solid transparent;
+/* Info dobozok */
+.dardin-info-box {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
-.clickable-box:hover {
-    transform: translateY(-5px);
-    border-color: #ff7b00;
-    box-shadow: 0 8px 20px rgba(255, 123, 0, 0.15);
+.dardin-info-box i {
+    font-size: 2.5rem;
+    color: #ff6b00;
+    margin-bottom: 20px;
 }
 
-.map-hint {
+.dardin-info-box h3 {
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+    color: #1a202c;
+}
+
+.dardin-open-status {
     display: inline-block;
-    margin-top: 10px;
-    font-size: 0.85rem;
-    color: #ff7b00;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    background: #edf2f7;
+    border-radius: 20px;
+}
+
+.dardin-clickable {
+    transition: all 0.3s ease;
+}
+
+.dardin-clickable:hover {
+    transform: translateY(-5px);
+    border-color: #ff6b00;
+    box-shadow: 0 15px 35px rgba(255, 107, 0, 0.1);
+}
+
+.dardin-map-hint {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #ff6b00;
     font-weight: 600;
 }
 
-.socials a {
+.dardin-socials a {
     display: inline-block;
-    margin: 0 10px;
-    font-size: 1.5rem;
-    color: #333;
-    transition: color 0.3s;
+    margin: 0 12px;
+    font-size: 1.8rem;
+    color: #4a5568;
+    transition: color 0.3s ease;
 }
 
-.socials a:hover {
-    color: #ff7b00;
+.dardin-socials a:hover {
+    color: #ff6b00;
 }
 
 /* Lábléc */
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #222;
-    color: #aaa;
-    font-size: 0.9rem;
+    padding: 30px;
+    background-color: #1a202c;
+    color: #a0aec0;
+    font-size: 0.95rem;
 }
 
-/* Mobil nézet */
+/* Reszponzív mobil nézet */
 @media (max-width: 768px) {
-    .nav-menu {
-        display: none; /* Mobilon rejtve, ha túl szűk a hely, de a logó és a nyelvváltó marad */
+    .dardin-nav-links {
+        display: none; /* Mobilon rejtve a tiszta fejlécért */
+    }
+    .dardin-hero-content h1 {
+        font-size: 2.5rem;
     }
 }
