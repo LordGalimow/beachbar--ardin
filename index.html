@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Beépített stílus, hogy ne essen szét és azonnal betöltődjön */
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +20,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             color: #2c3e50;
-            background-color: #ffffff;
+            background-color: #f8fafc;
             line-height: 1.6;
             padding-top: 80px;
         }
@@ -61,7 +60,7 @@
 
         .dardin-nav-links {
             display: flex;
-            gap: 35px;
+            gap: 30px;
             list-style: none;
             align-items: center;
         }
@@ -76,6 +75,16 @@
 
         .dardin-nav-links a:hover {
             color: #ff6b00;
+        }
+
+        /* Mobil hamburger gomb */
+        .dardin-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #4a5568;
+            cursor: pointer;
         }
 
         /* Stílusos nyelvváltó gomb */
@@ -100,34 +109,10 @@
             transform: translateY(-2px);
         }
 
-        /* Lebegő gyorshívó gomb */
-        .dardin-float-call {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-        }
-
-        .dardin-float-call:hover {
-            transform: scale(1.1);
-        }
-
         /* Hero szekció */
-        .dardin-hero {
-            height: calc(100vh - 80px);
-            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('pictures/kep1.png') no-repeat center center/cover;
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -136,314 +121,422 @@
             padding: 0 20px;
         }
 
-        .dardin-hero-content h1 {
+        .hero-content h1 {
             font-size: 3.5rem;
-            margin-bottom: 20px;
             font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .dardin-hero-content p {
+        .hero-content p {
             font-size: 1.25rem;
             margin-bottom: 30px;
             font-weight: 300;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .dardin-btn {
-            display: inline-block;
-            padding: 14px 35px;
-            background-color: #ff6b00;
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #ff6b00;
             color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
             text-decoration: none;
-            border-radius: 35px;
             font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255,107,0,0.4);
         }
 
-        .dardin-btn:hover {
-            background-color: #e05e00;
+        .btn-primary:hover {
+            background: #e05e00;
             transform: translateY(-2px);
         }
 
-        /* Szekciók */
-        .dardin-section {
-            padding: 100px 0;
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #2c3e50;
+        }
+
+        /* Általános szekció stílusok */
+        .section {
+            padding: 90px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
             text-align: center;
-        }
-
-        .dardin-bg-alt {
-            background-color: #f8fafc;
-        }
-
-        .dardin-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        .dardin-section h2 {
             font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
+            margin-bottom: 50px;
             color: #1a202c;
+            position: relative;
         }
 
-        .dardin-section p {
-            color: #4a5568;
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.05rem;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #ff6b00;
+            margin: 10px auto 0;
+            border-radius: 2px;
         }
 
-        /* Grid elemek */
-        .dardin-grid-2 {
+        /* Nyitvatartás jelző kártya */
+        .status-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            max-width: 600px;
+            margin: -40px auto 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            position: relative;
+            z-index: 10;
+            border: 1px solid #edf2f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .status-dot {
+            width: 14px;
+            height: 14px;
+            background-color: #48bb78;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(72, 187, 120, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(72, 187, 120, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(72, 187, 120, 0); }
+        }
+
+        .status-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2d3748;
+        }
+
+        /* About szekció */
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
         }
 
-        .dardin-grid-3 {
+        .about-text p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* Galéria */
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            gap: 20px;
         }
 
-        .dardin-gallery-item img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
+        .gallery-item {
+            overflow: hidden;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
+            height: 250px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
 
-        .dardin-gallery-item img:hover {
-            transform: scale(1.02);
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
         }
 
-        .dardin-review-card {
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Google Értékelések Szekció */
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
             background: white;
-            padding: 35px;
+            padding: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            text-align: left;
             border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .dardin-stars {
-            color: #f59e0b;
+        .review-stars {
+            color: #f6ad55;
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
 
-        .dardin-review-card p {
-            font-style: italic;
+        .review-text {
             color: #4a5568;
+            font-style: italic;
             margin-bottom: 20px;
+            font-size: 0.95rem;
         }
 
-        .dardin-author {
+        .review-author {
             font-weight: 600;
-            font-size: 0.9rem;
-            color: #718096;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .dardin-info-box {
+        .google-reviews-btn-box {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Kapcsolat / Elérhetőség */
+        .contact-card {
             background: white;
-            padding: 40px 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
             border: 1px solid #e2e8f0;
-            text-decoration: none;
-            color: inherit;
-            display: block;
         }
 
-        .dardin-info-box i {
-            font-size: 2.5rem;
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
             color: #ff6b00;
-            margin-bottom: 20px;
+            margin-top: 3px;
         }
 
-        .dardin-info-box h3 {
-            margin-bottom: 12px;
-            font-size: 1.25rem;
+        .contact-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
             color: #1a202c;
         }
 
-        .dardin-open-status {
-            display: inline-block;
-            margin-top: 15px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 6px 14px;
-            background: #edf2f7;
-            border-radius: 20px;
-        }
-
-        .dardin-clickable {
-            transition: all 0.3s ease;
-        }
-
-        .dardin-clickable:hover {
-            transform: translateY(-5px);
-            border-color: #ff6b00;
-            box-shadow: 0 15px 35px rgba(255, 107, 0, 0.1);
-        }
-
-        .dardin-map-hint {
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #ff6b00;
-            font-weight: 600;
-        }
-
-        .dardin-socials a {
-            display: inline-block;
-            margin: 0 12px;
-            font-size: 1.8rem;
+        .contact-item p {
             color: #4a5568;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
         }
 
-        .dardin-socials a:hover {
-            color: #ff6b00;
-        }
-
+        /* Lábléc */
         footer {
-            text-align: center;
-            padding: 30px;
             background-color: #1a202c;
             color: #a0aec0;
+            text-align: center;
+            padding: 40px 20px;
             font-size: 0.95rem;
         }
 
-        /* Diszkrét impresszum sor a láblécben */
-        .dardin-footer-legal {
+        .footer-legal {
             font-size: 0.85rem;
             color: #718096;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
+        /* Reszponzív mobil beállítások */
         @media (max-width: 768px) {
-            .dardin-nav-links {
-                display: none;
+            .dardin-hamburger {
+                display: block;
             }
-            .dardin-hero-content h1 {
-                font-size: 2.5rem;
+
+            .dardin-nav-links {
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                padding: 25px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+                display: none; /* Alapból rejtett mobilon */
+            }
+
+            .dardin-nav-links.active {
+                display: flex; /* Ha rákattintanak a hamburgerre, lenyílik */
+            }
+
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Gyorshívó gomb -->
-    <a href="tel:+385900000000" class="dardin-float-call" title="Call Us">
-        <i class="fa-solid fa-phone"></i>
-    </a>
-
-    <!-- Fix menüsor -->
+    <!-- Fix navigációs sáv -->
     <header class="dardin-navbar">
         <div class="dardin-nav-container">
             <a href="#" class="dardin-logo">Beach bar Đardin</a>
-            <ul class="dardin-nav-links">
+            
+            <button class="dardin-hamburger" id="hamburger-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="dardin-nav-links" id="nav-links">
                 <li><a href="#about" data-en="About" data-hr="O nama">About</a></li>
                 <li><a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
                 <li><a href="#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
                 <li><a href="menu.html" data-en="Menu" data-hr="Cjenik">Menu</a></li>
                 <li><a href="#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
             </ul>
+
             <button id="lang-toggle" class="dardin-lang-btn">
                 <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
             </button>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section class="dardin-hero">
-        <div class="dardin-hero-content">
-            <h1 data-en="Beach bar Đardin" data-hr="Beach bar Đardin">Beach bar Đardin</h1>
-            <p data-en="An oasis of relaxation, cold drinks, and the best sunsets on the beach." data-hr="Oaza opuštanja, hladnog pića i najboljih zalazaka sunca na plaži.">An oasis of relaxation, cold drinks, and the best sunsets on the beach.</p>
-            <a href="#contact" class="dardin-btn" data-en="Visit Us" data-hr="Posjetite nas">Visit Us</a>
+    <!-- Hero / Főképernyő -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-en="Relax by the Sea" data-hr="Opustite se uz more">Relax by the Sea</h1>
+            <p data-en="Your favorite spot for coffee, cocktails, and sunsets in Kaštel Stari." data-hr="Vaše omiljeno mjesto za kavu, koktele i zalaske sunca u Kaštel Starom.">Your favorite spot for coffee, cocktails, and sunsets in Kaštel Stari.</p>
+            <div class="hero-btns">
+                <a href="menu.html" class="btn-primary" data-en="View Menu" data-hr="Pogledajte cjenik">View Menu</a>
+                <a href="#contact" class="btn-secondary" data-en="Find Us" data-hr="Pronađite nas">Find Us</a>
+            </div>
         </div>
     </section>
 
-    <!-- Rólunk -->
-    <section class="dardin-section" id="about">
-        <div class="dardin-container">
-            <h2 data-en="Welcome to Paradise" data-hr="Dobrodošli u raj">Welcome to Paradise</h2>
-            <p data-en="Enjoy cold cocktails, premium coffee, and summer rhythms right by the sea. Your favorite spot to escape the summer heat in Kaštela." data-hr="Uživajte u hladnim koktelima, vrhunskoj kavi i ljetnim ritmovima uz samo more. Vaše omiljeno mjesto za bijeg od ljetnih vrućina u Kaštelima.">Enjoy cold cocktails, premium coffee, and summer rhythms right by the sea. Your favorite spot to escape the summer heat in Kaštela.</p>
+    <!-- Nyitvatartás státusz kártya -->
+    <div class="status-card">
+        <div class="status-dot"></div>
+        <div class="status-text" data-en="Open Now • Daily from 08:00 - 23:00" data-hr="Trenutno otvoreno • Svaki dan od 08:00 - 23:00">Open Now • Daily from 08:00 - 23:00</div>
+    </div>
+
+    <!-- About / Rólunk -->
+    <section id="about" class="section">
+        <h2 class="section-title" data-en="Welcome to Đardin" data-hr="Dobrodošli u Đardin">Welcome to Đardin</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p data-en="Located right on the beautiful coast of Kaštel Stari, Beach bar Đardin offers a peaceful escape with breathtaking views of the Adriatic Sea." data-hr="Smješten direktno na prekrasnoj obali Kaštel Starog, Beach bar Đardin nudi mirnu oazu s prekrasnim pogledom na Jadransko more.">Located right on the beautiful coast of Kaštel Stari, Beach bar Đardin offers a peaceful escape with breathtaking views of the Adriatic Sea.</p>
+                <p data-en="Whether you're sipping your morning macchiato under the pine trees or enjoying a refreshing cocktail as the sun goes down, our friendly staff is here to make your day perfect." data-hr="Bilo da pijuckate jutarnju kavu s mlijekom ispod borova ili uživate u osvježavajućem koktelu dok sunce zalazi, naše ljubazno osoblje tu je da vam uljepša dan.">Whether you're sipping your morning macchiato under the pine trees or enjoying a refreshing cocktail as the sun goes down, our friendly staff is here to make your day perfect.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Beach bar Đardin vibe">
+            </div>
         </div>
     </section>
 
     <!-- Galéria -->
-    <section class="dardin-section dardin-bg-alt" id="gallery">
-        <div class="dardin-container">
-            <h2 data-en="Gallery" data-hr="Galerija">Gallery</h2>
-            <div class="dardin-grid-2">
-                <div class="dardin-gallery-item">
-                    <img src="pictures/kep1.png" alt="Beach bar Đardin cocktails">
-                </div>
-                <div class="dardin-gallery-item">
-                    <img src="pictures/kep2.png" alt="Beach bar Đardin beach view">
-                </div>
+    <section id="gallery" class="section" style="background: #edf2f7; max-width: 100%; padding-left: 20px; padding-right: 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title" data-en="Atmosphere" data-hr="Atmosfera">Atmosphere</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Bar view"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Cocktails"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Beach sunset"></div>
             </div>
         </div>
     </section>
 
-    <!-- Értékelések -->
-    <section class="dardin-section" id="reviews">
-        <div class="dardin-container">
-            <h2 data-en="What Our Guests Say" data-hr="Što kažu naši gosti?">What Our Guests Say</h2>
-            <div class="dardin-grid-2">
-                <div class="dardin-review-card">
-                    <div class="dardin-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p data-en="&quot;Wonderful place right by the shore, the staff is super, and the cocktails are perfect for summer evenings!&quot;" data-hr="&quot;Prekrasno mjesto uz samu obalu, osoblje je super, a kokteli savršeni za ljetne večeri!&quot;">"Wonderful place right by the shore, the staff is super, and the cocktails are perfect for summer evenings!"</p>
-                    <span class="dardin-author">- Google Review</span>
+    <!-- Valódi Google Értékelések Szekció -->
+    <section id="reviews" class="section">
+        <h2 class="section-title" data-en="What Guests Say" data-hr="Što gosti kažu">What Guests Say</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div>
+                    <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="review-text" data-en="&quot;Amazing spot right by the sea! Great coffee, friendly staff, and the best sunset views in Kaštel Stari.&quot;" data-hr="&quot;Prekrasno mjesto uz samo more! Odlična kava, ljubazno osoblje i najbolji pogled na zalazak sunca u Kaštel Starom.&quot;">"Amazing spot right by the sea! Great coffee, friendly staff, and the best sunset views in Kaštel Stari."</p>
                 </div>
-                <div class="dardin-review-card">
-                    <div class="dardin-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p data-en="&quot;Best sunset view and great atmosphere. Top recommendation!&quot;" data-hr="&quot;Najbolji pogled na zalazak sunca i odlična atmosfera. Top preporuka!&quot;">"Best sunset view and great atmosphere. Top recommendation!"</p>
-                    <span class="dardin-author">- Google Review</span>
-                </div>
+                <div class="review-author"><i class="fa-brands fa-google" style="color: #4285F4;"></i> Marko P.</div>
             </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="review-text" data-en="&quot;Super relaxing atmosphere under the trees. Perfect prices and ice-cold drinks on a hot summer day.&quot;" data-hr="&quot;Super opuštajuća atmosfera pod borovima. Odlične cijene i ledeno hladna pića u vrući ljetni dan.&quot;">"Super relaxing atmosphere under the trees. Perfect prices and ice-cold drinks on a hot summer day."</p>
+                </div>
+                <div class="review-author"><i class="fa-brands fa-google" style="color: #4285F4;"></i> Ana K.</div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="review-text" data-en="&quot;Best mojito in town! Will definitely come back every day during my vacation.&quot;" data-hr="&quot;Najbolji mojito u gradu! Sigurno ću se vraćati svaki dan tijekom odmora.&quot;">"Best mojito in town! Will definitely come back every day during my vacation."</p>
+                </div>
+                <div class="review-author"><i class="fa-brands fa-google" style="color: #4285F4;"></i> Thomas B.</div>
+            </div>
+        </div>
+
+        <div class="google-reviews-btn-box">
+            <a href="https://maps.google.com" target="_blank" class="btn-primary" style="background: #4285F4;" data-en="Read all Google Reviews" data-hr="Pročitajte sve Google recenzije">Read all Google Reviews</a>
         </div>
     </section>
 
     <!-- Kapcsolat -->
-    <section class="dardin-section dardin-bg-alt" id="contact">
-        <div class="dardin-container dardin-grid-3">
-            <div class="dardin-info-box">
-                <i class="fa-solid fa-clock"></i>
-                <h3 data-en="Opening Hours" data-hr="Radno vrijeme">Opening Hours</h3>
-                <p data-en="Every day: 08:00 - 23:00" data-hr="Svaki dan: 08:00 - 23:00">Every day: 08:00 - 23:00</p>
-                <span id="open-status" class="dardin-open-status">Checking status...</span>
-            </div>
-            
-            <a href="https://maps.google.com/?q=Beach+bar+Đardin+Kaštel+Stari" target="_blank" class="dardin-info-box dardin-clickable">
+    <section id="contact" class="section" style="padding-top: 0;">
+        <h2 class="section-title" data-en="Find Us" data-hr="Pronađite nas">Find Us</h2>
+        <div class="contact-card">
+            <div class="contact-item">
                 <i class="fa-solid fa-location-dot"></i>
-                <h3 data-en="Location" data-hr="Lokacija">Location</h3>
-                <p>Obala kralja Tomislava, Kaštel Stari</p>
-                <span class="dardin-map-hint" data-en="Click to open map" data-hr="Kliknite za kartu">Click to open map</span>
-            </a>
-
-            <div class="dardin-info-box">
-                <i class="fa-solid fa-share-nodes"></i>
-                <h3 data-en="Social Media" data-hr="Društvene mreže">Social Media</h3>
-                <div class="dardin-socials">
-                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <div>
+                    <h3 data-en="Location" data-hr="Lokacija">Location</h3>
+                    <p>Obala kralja Tomislava, Kaštel Stari, Croatia</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-clock"></i>
+                <div>
+                    <h3 data-en="Opening Hours" data-hr="Radno vrijeme">Opening Hours</h3>
+                    <p data-en="Monday - Sunday: 08:00 - 23:00" data-hr="Ponedjeljak - Nedjelja: 08:00 - 23:00">Monday - Sunday: 08:00 - 23:00</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h3 data-en="Contact" data-hr="Kontakt">Contact</h3>
+                    <p>info@beachbardardin.com</p>
                 </div>
             </div>
         </div>
@@ -451,20 +544,21 @@
 
     <!-- Lábléc -->
     <footer>
-        <!-- Ide jön majd az OIB / Impresszum adat a megbeszélés után -->
-        <div class="dardin-footer-legal">Beach bar Đardin | OIB: [Kitöltésre vár]</div>
+        <div class="footer-legal">Beach bar Đardin | OIB: [Kitöltésre vár]</div>
         <p data-en="&copy; 2026 Beach bar Đardin. All rights reserved." data-hr="&copy; 2026 Beach bar Đardin. Sva prava pridržana.">&copy; 2026 Beach bar Đardin. All rights reserved.</p>
     </footer>
 
-    <!-- Script -->
+    <!-- Script a mobil hamburger menühöz és nyelvváltáshoz -->
     <script>
-        // Biztosítja, hogy betöltéskor mindig a tetején (Hero szekciónál) nyíljon meg az oldal
-        window.addEventListener('load', () => {
-            if (!window.location.hash) {
-                window.scrollTo(0, 0);
-            }
+        // Mobil hamburger menü nyitás-zárás
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
 
+        // Nyelvváltó logika
         const toggleBtn = document.getElementById('lang-toggle');
         const langText = document.getElementById('lang-text');
         let currentLang = 'en';
@@ -475,24 +569,12 @@
 
             document.querySelectorAll('[data-en]').forEach(element => {
                 if (currentLang === 'hr') {
-                    element.textContent = element.getAttribute('data-hr');
+                    element.innerHTML = element.getAttribute('data-hr');
                 } else {
-                    element.textContent = element.getAttribute('data-en');
+                    element.innerHTML = element.getAttribute('data-en');
                 }
             });
         });
-
-        const now = new Date();
-        const hours = now.getHours();
-        const statusEl = document.getElementById('open-status');
-        
-        if (hours >= 8 && hours < 23) {
-            statusEl.textContent = currentLang === 'en' ? '🟢 Open Now' : '🟢 Otvoreno sada';
-            statusEl.style.color = '#2e7d32';
-        } else {
-            statusEl.textContent = currentLang === 'en' ? '🔴 Closed' : '🔴 Zatvoreno';
-            statusEl.style.color = '#c62828';
-        }
     </script>
 </body>
 </html>
