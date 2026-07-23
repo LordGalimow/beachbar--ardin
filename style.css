@@ -10,7 +10,31 @@ body {
     color: #333;
     background-color: #f9f9f9;
     line-height: 1.6;
-    padding-top: 70px; /* Hogy ne takarja ki a fix menü a tartalmat */
+    padding-top: 70px;
+}
+
+/* Lebegő gyorshívó gomb mobilon */
+.float-call {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25d366; /* WhatsApp zöld vagy hívó szín */
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: transform 0.3s;
+    text-decoration: none;
+}
+
+.float-call:hover {
+    transform: scale(1.1);
 }
 
 /* Stílusos Navigációs Sáv */
@@ -61,7 +85,7 @@ body {
     color: #ff7b00;
 }
 
-/* Szép, prémium nyelvváltó gomb */
+/* Nyelvváltó gomb */
 .lang-btn {
     background: #ff7b00;
     color: white;
@@ -249,6 +273,13 @@ body {
     margin-bottom: 10px;
 }
 
+.open-status {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
 /* Interaktív kártya effektek */
 .clickable-box {
     transition: transform 0.3s, box-shadow 0.3s;
@@ -291,9 +322,9 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Reszponzív mobilos igazítás a menühöz */
-@media (max-width: 600px) {
+/* Reszponzív mobilos igazítás */
+@media (max-width: 768px) {
     .nav-links {
-        display: none; /* Mobilon az egyszerűség kedvéért elrejtve, vagy csak kompakt */
+        display: none; /* Mobilon letisztítva */
     }
 }
