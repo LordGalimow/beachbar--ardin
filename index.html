@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beach bar Đardin</title>
+    <title>Beach bar Đardin | Kaštel Stari</title>
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- Lebegő Gyorshívó / WhatsApp gomb mobilon -->
+    <a href="tel:+385900000000" class="float-call" title="Call Us">
+        <i class="fa-solid fa-phone"></i>
+    </a>
 
     <!-- Navigációs sáv -->
     <nav class="navbar">
@@ -22,7 +27,7 @@
                 <li><a href="#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
                 <li><a href="#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
             </ul>
-            <!-- Szép, modern nyelvváltó gomb -->
+            <!-- Nyelvváltó gomb -->
             <button id="lang-toggle" class="lang-btn">
                 <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
             </button>
@@ -91,6 +96,8 @@
                 <i class="fa-solid fa-clock"></i>
                 <h3 data-en="Opening Hours" data-hr="Radno vrijeme">Opening Hours</h3>
                 <p data-en="Every day: 08:00 - 23:00" data-hr="Svaki dan: 08:00 - 23:00">Every day: 08:00 - 23:00</p>
+                <!-- Automatikus nyitva/zárva jelző -->
+                <span id="open-status" class="open-status">Checking status...</span>
             </div>
             
             <!-- Interaktív Térkép Link -->
@@ -105,8 +112,8 @@
                 <i class="fa-solid fa-share-nodes"></i>
                 <h3 data-en="Social Media" data-hr="Društvene mreže">Social Media</h3>
                 <div class="socials">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                 </div>
             </div>
         </div>
@@ -117,8 +124,9 @@
         <p data-en="&copy; 2026 Beach bar Đardin. All rights reserved." data-hr="&copy; 2026 Beach bar Đardin. Sva prava pridržana.">&copy; 2026 Beach bar Đardin. All rights reserved.</p>
     </footer>
 
-    <!-- Nyelvváltó Script -->
+    <!-- Scriptek (Nyelvváltó + Automatikus Nyitva tartás ellenőrző) -->
     <script>
+        // Nyelvváltó logika
         const toggleBtn = document.getElementById('lang-toggle');
         const langText = document.getElementById('lang-text');
         let currentLang = 'en';
@@ -135,6 +143,19 @@
                 }
             });
         });
+
+        // Automatikus Nyitva/Zárva állapot kalkulátor (08:00 - 23:00 között)
+        const now = new Date();
+        const hours = now.getHours();
+        const statusEl = document.getElementById('open-status');
+        
+        if (hours >= 8 && hours < 23) {
+            statusEl.textContent = currentLang === 'en' ? '🟢 Open Now' : '🟢 Otvoreno sada';
+            statusEl.style.color = '#2e7d32';
+        } else {
+            statusEl.textContent = currentLang === 'en' ? '🔴 Closed' : '🔴 Zatvoreno';
+            statusEl.style.color = '#c62828';
+        }
     </script>
 </body>
 </html>
