@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,33 +12,36 @@
 </head>
 <body>
 
+    <!-- Nyelvváltó gomb -->
+    <button id="lang-toggle" class="lang-btn">HR / EN</button>
+
     <!-- Hero szekció -->
     <header class="hero">
         <div class="hero-content">
-            <h1>Beach bar Đardin</h1>
-            <p>Oaza opuštanja, hladnog pića i najboljih zalazaka sunca na plaži.</p>
-            <a href="#kontakt" class="btn">Posjetite nas</a>
+            <h1 data-en="Beach bar Đardin" data-hr="Beach bar Đardin">Beach bar Đardin</h1>
+            <p data-en="An oasis of relaxation, cold drinks, and the best sunsets on the beach." data-hr="Oaza opuštanja, hladnog pića i najboljih zalazaka sunca na plaži.">An oasis of relaxation, cold drinks, and the best sunsets on the beach.</p>
+            <a href="#kontakt" class="btn" data-en="Visit Us" data-hr="Posjetite nas">Visit Us</a>
         </div>
     </header>
 
     <!-- Rólunk -->
     <section class="about">
         <div class="container">
-            <h2>Dobrodošli u raj</h2>
-            <p>Uživajte u hladnim koktelima, vrhunskoj kavi i ljetnim ritmovima uz samo more. Vaše omiljeno mjesto za bijeg od ljetnih vrućina u Kaštelima.</p>
+            <h2 data-en="Welcome to Paradise" data-hr="Dobrodošli u raj">Welcome to Paradise</h2>
+            <p data-en="Enjoy cold cocktails, premium coffee, and summer rhythms right by the sea. Your favorite spot to escape the summer heat in Kaštela." data-hr="Uživajte u hladnim koktelima, vrhunskoj kavi i ljetnim ritmovima uz samo more. Vaše omiljeno mjesto za bijeg od ljetnih vrućina u Kaštelima.">Enjoy cold cocktails, premium coffee, and summer rhythms right by the sea. Your favorite spot to escape the summer heat in Kaštela.</p>
         </div>
     </section>
 
     <!-- Galéria szekció -->
     <section class="gallery">
         <div class="container">
-            <h2>Galerija</h2>
+            <h2 data-en="Gallery" data-hr="Galerija">Gallery</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="kep1.jpg" alt="Beach bar Đardin kokteli">
+                    <img src="pictures/kep1.png" alt="Beach bar Đardin cocktails">
                 </div>
                 <div class="gallery-item">
-                    <img src="kep2.jpg" alt="Beach bar Đardin pogled na plažu">
+                    <img src="pictures/kep2.png" alt="Beach bar Đardin beach view">
                 </div>
             </div>
         </div>
@@ -47,21 +50,21 @@
     <!-- Google Értékelések szekció -->
     <section class="reviews">
         <div class="container">
-            <h2>Što kažu naši gosti?</h2>
+            <h2 data-en="What Our Guests Say" data-hr="Što kažu naši gosti?">What Our Guests Say</h2>
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="stars">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p>"Prekrasno mjesto uz samu obalu, osoblje je super, a kokteli savršeni za ljetne večeri!"</p>
-                    <span class="author">- Google recenzija</span>
+                    <p data-en="&quot;Wonderful place right by the shore, the staff is super, and the cocktails are perfect for summer evenings!&quot;" data-hr="&quot;Prekrasno mjesto uz samu obalu, osoblje je super, a kokteli savršeni za ljetne večeri!&quot;">"Wonderful place right by the shore, the staff is super, and the cocktails are perfect for summer evenings!"</p>
+                    <span class="author">- Google Review</span>
                 </div>
                 <div class="review-card">
                     <div class="stars">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p>"Najbolji pogled na zalazak sunca i odlična atmosfera. Top preporuka!"</p>
-                    <span class="author">- Google recenzija</span>
+                    <p data-en="&quot;Best sunset view and great atmosphere. Top recommendation!&quot;" data-hr="&quot;Najbolji pogled na zalazak sunca i odlična atmosfera. Top preporuka!&quot;">"Best sunset view and great atmosphere. Top recommendation!"</p>
+                    <span class="author">- Google Review</span>
                 </div>
             </div>
         </div>
@@ -72,17 +75,17 @@
         <div class="container grid">
             <div class="info-box">
                 <i class="fa-solid fa-clock"></i>
-                <h3>Radno vrijeme</h3>
-                <p>Svaki dan: 08:00 - 23:00</p>
+                <h3 data-en="Opening Hours" data-hr="Radno vrijeme">Opening Hours</h3>
+                <p data-en="Every day: 08:00 - 23:00" data-hr="Svaki dan: 08:00 - 23:00">Every day: 08:00 - 23:00</p>
             </div>
             <div class="info-box">
-                <i class="fa-solid fa-location-dot">C</i>
-                <h3>Lokacija</h3>
-                <p>Uz samu plažu, Kaštel Stari</p>
+                <i class="fa-solid fa-location-dot"></i>
+                <h3 data-en="Location" data-hr="Lokacija">Location</h3>
+                <p data-en="Right on the beach, Kaštel Stari" data-hr="Uz samu plažu, Kaštel Stari">Right on the beach, Kaštel Stari</p>
             </div>
             <div class="info-box">
                 <i class="fa-solid fa-share-nodes"></i>
-                <h3>Društvene mreže</h3>
+                <h3 data-en="Social Media" data-hr="Društvene mreže">Social Media</h3>
                 <div class="socials">
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#"><i class="fa-brands fa-facebook"></i></a>
@@ -93,8 +96,26 @@
 
     <!-- Lábléc -->
     <footer>
-        <p>&copy; 2026 Beach bar Đardin. Sva prava pridržana.</p>
+        <p data-en="&copy; 2026 Beach bar Đardin. All rights reserved." data-hr="&copy; 2026 Beach bar Đardin. Sva prava pridržana.">&copy; 2026 Beach bar Đardin. All rights reserved.</p>
     </footer>
 
+    <!-- Nyelvváltó Script -->
+    <script>
+        const toggleBtn = document.getElementById('lang-toggle');
+        let currentLang = 'en';
+
+        toggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'hr' : 'en';
+            toggleBtn.textContent = currentLang === 'en' ? 'HR / EN' : 'EN / HR';
+
+            document.querySelectorAll('[data-en]').forEach(element => {
+                if (currentLang === 'hr') {
+                    element.textContent = element.getAttribute('data-hr');
+                } else {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
