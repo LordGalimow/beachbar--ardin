@@ -4,11 +4,336 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beach bar Đardin | Kaštel Stari</title>
-    <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome ikonok -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Beépített stílus, hogy ne essen szét és azonnal betöltődjön */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #2c3e50;
+            background-color: #ffffff;
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        /* Fix tetejű modern navigációs sáv */
+        .dardin-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .dardin-nav-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dardin-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b00;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .dardin-nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .dardin-nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .dardin-nav-links a:hover {
+            color: #ff6b00;
+        }
+
+        /* Stílusos nyelvváltó gomb */
+        .dardin-lang-btn {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25);
+        }
+
+        .dardin-lang-btn:hover {
+            background: #e05e00;
+            transform: translateY(-2px);
+        }
+
+        /* Lebegő gyorshívó gomb */
+        .dardin-float-call {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .dardin-float-call:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero szekció */
+        .dardin-hero {
+            height: calc(100vh - 80px);
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('pictures/kep1.png') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .dardin-hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .dardin-hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .dardin-btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background-color: #ff6b00;
+            color: white;
+            text-decoration: none;
+            border-radius: 35px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        .dardin-btn:hover {
+            background-color: #e05e00;
+            transform: translateY(-2px);
+        }
+
+        /* Szekciók */
+        .dardin-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .dardin-bg-alt {
+            background-color: #f8fafc;
+        }
+
+        .dardin-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .dardin-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .dardin-section p {
+            color: #4a5568;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* Grid elemek */
+        .dardin-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .dardin-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .dardin-gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .dardin-gallery-item img:hover {
+            transform: scale(1.02);
+        }
+
+        .dardin-review-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+
+        .dardin-stars {
+            color: #f59e0b;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .dardin-review-card p {
+            font-style: italic;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .dardin-author {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .dardin-info-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .dardin-info-box i {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 20px;
+        }
+
+        .dardin-info-box h3 {
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            color: #1a202c;
+        }
+
+        .dardin-open-status {
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 6px 14px;
+            background: #edf2f7;
+            border-radius: 20px;
+        }
+
+        .dardin-clickable {
+            transition: all 0.3s ease;
+        }
+
+        .dardin-clickable:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b00;
+            box-shadow: 0 15px 35px rgba(255, 107, 0, 0.1);
+        }
+
+        .dardin-map-hint {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #ff6b00;
+            font-weight: 600;
+        }
+
+        .dardin-socials a {
+            display: inline-block;
+            margin: 0 12px;
+            font-size: 1.8rem;
+            color: #4a5568;
+            transition: color 0.3s ease;
+        }
+
+        .dardin-socials a:hover {
+            color: #ff6b00;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #1a202c;
+            color: #a0aec0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .dardin-nav-links {
+                display: none;
+            }
+            .dardin-hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -17,23 +342,23 @@
         <i class="fa-solid fa-phone"></i>
     </a>
 
-    <!-- Profi fix menüsor -->
+    <!-- Fix menüsor -->
     <header class="dardin-navbar">
         <div class="dardin-nav-container">
-            <a href="#" class="dardin-logo">Đardin</a>
-            <nav class="dardin-nav-links">
-                <a href="#about" data-en="About" data-hr="O nama">About</a>
-                <a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a>
-                <a href="#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a>
-                <a href="#contact" data-en="Contact" data-hr="Kontakt">Contact</a>
-            </nav>
+            <a href="#" class="dardin-logo">Beach bar Đardin</a>
+            <ul class="dardin-nav-links">
+                <li><a href="#about" data-en="About" data-hr="O nama">About</a></li>
+                <li><a href="#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
+                <li><a href="#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
+                <li><a href="#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
+            </ul>
             <button id="lang-toggle" class="dardin-lang-btn">
                 <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
             </button>
         </div>
     </header>
 
-    <!-- Hero szekció -->
+    <!-- Hero -->
     <section class="dardin-hero">
         <div class="dardin-hero-content">
             <h1 data-en="Beach bar Đardin" data-hr="Beach bar Đardin">Beach bar Đardin</h1>
@@ -88,7 +413,7 @@
         </div>
     </section>
 
-    <!-- Info / Kapcsolat -->
+    <!-- Kapcsolat -->
     <section class="dardin-section dardin-bg-alt" id="contact">
         <div class="dardin-container dardin-grid-3">
             <div class="dardin-info-box">
