@@ -408,7 +408,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Mobil nézet beállítások (Fixálva, hogy ne lógjanak össze az elemek) */
+        /* Mobil nézet beállítások */
         @media (max-width: 768px) {
             body {
                 padding-top: 75px;
@@ -440,13 +440,22 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 20px;
-                padding: 30px 20px;
+                padding: 40px 20px;
                 display: none;
                 box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+                text-align: center;
             }
 
             .dardin-nav-links.active {
                 display: flex;
+            }
+
+            .dardin-mobile-lang-item {
+                margin-top: 10px;
+            }
+
+            .dardin-lang-btn {
+                margin: 0 auto;
             }
 
             .hero-content h1 {
@@ -480,7 +489,7 @@
                 <li><a href="#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
                 <li><a href="menu.html" data-en="Menu" data-hr="Cjenik">Menu</a></li>
                 <li><a href="#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
-                <li>
+                <li class="dardin-mobile-lang-item">
                     <button id="lang-toggle" class="dardin-lang-btn">
                         <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
                     </button>
@@ -625,7 +634,7 @@
             }
         });
 
-        // Kattintásra bezáródik a menü mobilon a linkekre kattintva
+        // Kattintásra bezáródik a menü mobilon a linkekre kattintva (kivéve a gombot)
         document.querySelectorAll('.dardin-nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -643,7 +652,6 @@
         function checkOpenStatus() {
             const now = new Date();
             const hours = now.getHours();
-            // Nyitva 08:00 és 23:00 között
             isOpenNow = (hours >= 8 && hours < 23);
 
             if (isOpenNow) {
@@ -656,7 +664,6 @@
                 statusText.setAttribute('data-hr', statusText.getAttribute('data-hr-closed'));
             }
 
-            // Aktuális nyelv szerinti beállítás frissítése
             if (currentLang === 'hr') {
                 statusText.innerHTML = statusText.getAttribute('data-hr');
             } else {
@@ -673,7 +680,6 @@
             currentLang = currentLang === 'en' ? 'hr' : 'en';
             langText.textContent = currentLang === 'en' ? 'HR' : 'EN';
 
-            // Normál elemek fordítása
             document.querySelectorAll('[data-en]').forEach(element => {
                 if (element !== statusText) {
                     if (currentLang === 'hr') {
@@ -684,14 +690,12 @@
                 }
             });
 
-            // Státusz szöveg frissítése nyelvváltáskor
             checkOpenStatus();
         });
 
-        // Indításkor ellenőrzés
         checkOpenStatus();
 
-        // Görgetésre beúszó animációk (Intersection Observer)
+        // Görgetésre beúszó animációk
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
