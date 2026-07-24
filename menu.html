@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu & Price List | Beach bar Đardin</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- FontAwesome ikonok -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -19,22 +19,22 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: #2c3e50;
-            background-color: #f8fafc;
-            line-height: 1.6;
-            padding-top: 80px;
+            color: #2b2b2b;
+            background-color: #faf9f6;
+            line-height: 1.7;
+            padding-top: 90px;
         }
 
-        /* Fix tetejű modern navigációs sáv */
+        /* Navigáció */
         .dardin-navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            height: 90px;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -42,88 +42,88 @@
 
         .dardin-nav-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .dardin-logo {
-            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #ff6b00;
+            color: #c5a059;
             text-decoration: none;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .dardin-nav-links {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             list-style: none;
             align-items: center;
         }
 
         .dardin-nav-links a {
             text-decoration: none;
-            color: #4a5568;
-            font-weight: 500;
-            font-size: 1rem;
+            color: #e2e2e2;
+            font-weight: 400;
+            font-size: 0.95rem;
             transition: color 0.3s ease;
         }
 
         .dardin-nav-links a:hover {
-            color: #ff6b00;
+            color: #c5a059;
         }
 
-        /* Mobil hamburger gomb */
         .dardin-hamburger {
             display: none;
             background: none;
             border: none;
             font-size: 1.8rem;
-            color: #4a5568;
+            color: #c5a059;
             cursor: pointer;
         }
 
-        /* Stílusos nyelvváltó gomb */
         .dardin-lang-btn {
-            background: #ff6b00;
-            color: white;
-            border: none;
-            padding: 8px 18px;
+            background: transparent;
+            color: #c5a059;
+            border: 1px solid rgba(197, 160, 89, 0.5);
+            padding: 8px 20px;
             border-radius: 30px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25);
         }
 
         .dardin-lang-btn:hover {
-            background: #e05e00;
-            transform: translateY(-2px);
+            background: #c5a059;
+            color: #121212;
         }
 
-        /* Fő tartalom */
+        /* Étlap Fejléc */
         .menu-header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 70px 20px 40px;
         }
 
         .menu-header h1 {
-            font-size: 2.8rem;
-            color: #1a202c;
-            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #121212;
+            margin-bottom: 15px;
         }
 
         .menu-header p {
-            color: #4a5568;
-            font-size: 1.1rem;
+            color: #666;
+            font-size: 1.05rem;
         }
 
         .menu-container {
@@ -134,31 +134,36 @@
 
         .menu-category {
             background: white;
-            border-radius: 16px;
-            padding: 35px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
         }
 
         .menu-category h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: #ff6b00;
-            margin-bottom: 25px;
+            color: #121212;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            border-bottom: 2px solid #edf2f7;
-            padding-bottom: 12px;
+            gap: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        .menu-category h2 i {
+            color: #c5a059;
         }
 
         .menu-item {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 20px;
-            border-bottom: 1px dotted #e2e8f0;
-            padding-bottom: 15px;
+            margin-bottom: 25px;
+            border-bottom: 1px dashed #eaeaea;
+            padding-bottom: 18px;
         }
 
         .menu-item:last-child {
@@ -168,21 +173,21 @@
         }
 
         .item-details h3 {
-            font-size: 1.15rem;
-            color: #1a202c;
+            font-size: 1.1rem;
+            color: #121212;
             font-weight: 600;
         }
 
         .item-details p {
-            font-size: 0.9rem;
-            color: #718096;
-            margin-top: 3px;
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 4px;
         }
 
         .item-price {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            color: #ff6b00;
+            color: #c5a059;
             white-space: nowrap;
             margin-left: 20px;
         }
@@ -190,42 +195,44 @@
         /* Vissza gomb */
         .back-btn-container {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .dardin-btn {
             display: inline-block;
-            padding: 12px 30px;
-            background-color: #1a202c;
+            padding: 14px 35px;
+            background-color: #121212;
             color: white;
             text-decoration: none;
-            border-radius: 35px;
-            font-weight: 600;
-            font-size: 1rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .dardin-btn:hover {
-            background-color: #ff6b00;
+            background-color: #c5a059;
+            color: #121212;
             transform: translateY(-2px);
         }
 
         footer {
             text-align: center;
-            padding: 30px;
-            background-color: #1a202c;
-            color: #a0aec0;
-            font-size: 0.95rem;
+            padding: 50px 20px;
+            background-color: #121212;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
         }
 
         .dardin-footer-legal {
-            font-size: 0.85rem;
-            color: #718096;
-            margin-bottom: 8px;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 10px;
         }
 
-        /* Mobil nézet beállítások */
         @media (max-width: 768px) {
             .dardin-hamburger {
                 display: block;
@@ -233,24 +240,24 @@
 
             .dardin-nav-links {
                 position: absolute;
-                top: 80px;
+                top: 90px;
                 left: 0;
                 width: 100%;
-                background: white;
+                background: #121212;
+                border-bottom: 1px solid rgba(197, 160, 89, 0.2);
                 flex-direction: column;
                 align-items: center;
-                gap: 20px;
-                padding: 25px 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-                display: none; /* Alapból rejtett */
+                gap: 25px;
+                padding: 30px 0;
+                display: none;
             }
 
             .dardin-nav-links.active {
-                display: flex; /* Ha rákattintanak, lenyílik */
+                display: flex;
             }
 
             .menu-header h1 {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
             }
         }
     </style>
@@ -270,7 +277,7 @@
                 <li><a href="index.html#about" data-en="About" data-hr="O nama">About</a></li>
                 <li><a href="index.html#gallery" data-en="Gallery" data-hr="Galerija">Gallery</a></li>
                 <li><a href="index.html#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
-                <li><a href="menu.html" data-en="Menu" data-hr="Cjenik" style="color: #ff6b00; font-weight: 600;">Menu</a></li>
+                <li><a href="menu.html" data-en="Menu" data-hr="Cjenik" style="color: #c5a059; font-weight: 600;">Menu</a></li>
                 <li><a href="index.html#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
             </ul>
 
@@ -408,9 +415,8 @@
         <p data-en="&copy; 2026 Beach bar Đardin. All rights reserved." data-hr="&copy; 2026 Beach bar Đardin. Sva prava pridržana.">&copy; 2026 Beach bar Đardin. All rights reserved.</p>
     </footer>
 
-    <!-- Script a mobil menühöz és nyelvváltáshoz -->
+    <!-- Script -->
     <script>
-        // Mobil hamburger menü nyitás-zárás
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const navLinks = document.getElementById('nav-links');
 
@@ -418,7 +424,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Nyelvváltó logika
         const toggleBtn = document.getElementById('lang-toggle');
         const langText = document.getElementById('lang-text');
         let currentLang = 'en';
