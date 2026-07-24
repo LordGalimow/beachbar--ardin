@@ -75,6 +75,7 @@
             color: #c5a059;
             text-decoration: none;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
         .dardin-nav-links {
@@ -245,7 +246,7 @@
         .status-dot {
             width: 10px;
             height: 10px;
-            background-color: #2ecc71; /* Alapból zöld, JS kezeli */
+            background-color: #2ecc71;
             border-radius: 50%;
             box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.2);
             transition: background-color 0.3s ease;
@@ -407,24 +408,41 @@
             letter-spacing: 0.5px;
         }
 
-        /* Mobil nézet beállítások */
+        /* Mobil nézet beállítások (Fixálva, hogy ne lógjanak össze az elemek) */
         @media (max-width: 768px) {
+            body {
+                padding-top: 75px;
+            }
+
+            .dardin-navbar {
+                height: 75px;
+            }
+
+            .dardin-nav-container {
+                padding: 0 20px;
+            }
+
+            .dardin-logo {
+                font-size: 1.3rem;
+            }
+
             .dardin-hamburger {
                 display: block;
             }
 
             .dardin-nav-links {
                 position: absolute;
-                top: 90px;
+                top: 75px;
                 left: 0;
                 width: 100%;
                 background: #121212;
-                border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+                border-bottom: 2px solid #c5a059;
                 flex-direction: column;
                 align-items: center;
-                gap: 25px;
-                padding: 30px 0;
+                gap: 20px;
+                padding: 30px 20px;
                 display: none;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.7);
             }
 
             .dardin-nav-links.active {
@@ -432,7 +450,11 @@
             }
 
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.3rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
             }
 
             .about-grid {
@@ -448,8 +470,8 @@
         <div class="dardin-nav-container">
             <a href="#" class="dardin-logo">Beach bar Đardin</a>
             
-            <button class="dardin-hamburger" id="hamburger-btn">
-                <i class="fa-solid fa-bars"></i>
+            <button class="dardin-hamburger" id="hamburger-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
             </button>
 
             <ul class="dardin-nav-links" id="nav-links">
@@ -458,11 +480,12 @@
                 <li><a href="#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
                 <li><a href="menu.html" data-en="Menu" data-hr="Cjenik">Menu</a></li>
                 <li><a href="#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
+                <li>
+                    <button id="lang-toggle" class="dardin-lang-btn">
+                        <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
+                    </button>
+                </li>
             </ul>
-
-            <button id="lang-toggle" class="dardin-lang-btn">
-                <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
-            </button>
         </div>
     </header>
 
@@ -586,12 +609,29 @@
 
     <!-- Scriptek -->
     <script>
-        // Mobil hamburger menü
+        // Mobil hamburger menü és ikon váltás
         const hamburgerBtn = document.getElementById('hamburger-btn');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
         const navLinks = document.getElementById('nav-links');
 
         hamburgerBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-times');
+            } else {
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Kattintásra bezáródik a menü mobilon a linkekre kattintva
+        document.querySelectorAll('.dardin-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+            });
         });
 
         // Valós idejű nyitvatartás ellenőrző logika
@@ -635,7 +675,7 @@
 
             // Normál elemek fordítása
             document.querySelectorAll('[data-en]').forEach(element => {
-                if (element !== statusText) { // A státuszt külön kezeljük
+                if (element !== statusText) {
                     if (currentLang === 'hr') {
                         element.innerHTML = element.getAttribute('data-hr');
                     } else {
