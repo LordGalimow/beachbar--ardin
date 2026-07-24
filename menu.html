@@ -474,6 +474,17 @@
 
     <!-- Script -->
     <script>
+
+        // Oldal betöltésekor mindig ugorjon a legtetejére
+        window.addEventListener('beforeunload', () => {
+            window.scrollTo(0, 0);
+        });
+        
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+        
         // Mobil hamburger menü és ikon váltás
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const hamburgerIcon = document.getElementById('hamburger-icon');
