@@ -39,7 +39,6 @@
             transform: translateY(0);
         }
 
-        /* Késleltetések egymás utáni kártyáknak */
         .delay-1 { transition-delay: 0.15s; }
         .delay-2 { transition-delay: 0.3s; }
         .delay-3 { transition-delay: 0.45s; }
@@ -225,7 +224,7 @@
             margin: 15px auto 0;
         }
 
-        /* Státusz Kártya */
+        /* Dinamikus Státusz Kártya */
         .status-card {
             background: #ffffff;
             border-radius: 12px;
@@ -246,9 +245,15 @@
         .status-dot {
             width: 10px;
             height: 10px;
-            background-color: #c5a059;
+            background-color: #2ecc71; /* Alapból zöld, JS kezeli */
             border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.2);
+            box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .status-dot.closed {
+            background-color: #e74c3c;
+            box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.2);
         }
 
         .status-text {
@@ -473,10 +478,16 @@
         </div>
     </section>
 
-    <!-- Nyitvatartás státusz kártya -->
+    <!-- Dinamikus Nyitvatartás Státusz Kártya -->
     <div class="status-card reveal">
-        <div class="status-dot"></div>
-        <div class="status-text" data-en="Open Now • Daily from 08:00 - 23:00" data-hr="Trenutno otvoreno • Svaki dan od 08:00 - 23:00">Open Now • Daily from 08:00 - 23:00</div>
+        <div class="status-dot" id="status-dot"></div>
+        <div class="status-text" id="status-text" 
+             data-en-open="Open Now • Daily from 08:00 - 23:00" 
+             data-hr-open="Trenutno otvoreno • Svaki dan od 08:00 - 23:00"
+             data-en-closed="Closed Now • Opens daily at 08:00"
+             data-hr-closed="Trenutno zatvoreno • Otvaramo svaki dan u 08:00">
+             Checking status...
+        </div>
     </div>
 
     <!-- About / Rólunk -->
@@ -573,7 +584,7 @@
         <p data-en="&copy; 2026 Beach bar Đardin. All rights reserved." data-hr="&copy; 2026 Beach bar Đardin. Sva prava pridržana.">&copy; 2026 Beach bar Đardin. All rights reserved.</p>
     </footer>
 
-    <!-- Script a mobil menühöz, nyelvváltáshoz ÉS a beúszó animációhoz -->
+    <!-- Scriptek -->
     <script>
         // Mobil hamburger menü
         const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -582,6 +593,36 @@
         hamburgerBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
+
+        // Valós idejű nyitvatartás ellenőrző logika
+        const statusText = document.getElementById('status-text');
+        const statusDot = document.getElementById('status-dot');
+
+        let isOpenNow = false;
+
+        function checkOpenStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            // Nyitva 08:00 és 23:00 között
+            isOpenNow = (hours >= 8 && hours < 23);
+
+            if (isOpenNow) {
+                statusDot.classList.remove('closed');
+                statusText.setAttribute('data-en', statusText.getAttribute('data-en-open'));
+                statusText.setAttribute('data-hr', statusText.getAttribute('data-hr-open'));
+            } else {
+                statusDot.classList.add('closed');
+                statusText.setAttribute('data-en', statusText.getAttribute('data-en-closed'));
+                statusText.setAttribute('data-hr', statusText.getAttribute('data-hr-closed'));
+            }
+
+            // Aktuális nyelv szerinti beállítás frissítése
+            if (currentLang === 'hr') {
+                statusText.innerHTML = statusText.getAttribute('data-hr');
+            } else {
+                statusText.innerHTML = statusText.getAttribute('data-en');
+            }
+        }
 
         // Nyelvváltó
         const toggleBtn = document.getElementById('lang-toggle');
@@ -592,14 +633,23 @@
             currentLang = currentLang === 'en' ? 'hr' : 'en';
             langText.textContent = currentLang === 'en' ? 'HR' : 'EN';
 
+            // Normál elemek fordítása
             document.querySelectorAll('[data-en]').forEach(element => {
-                if (currentLang === 'hr') {
-                    element.innerHTML = element.getAttribute('data-hr');
-                } else {
-                    element.innerHTML = element.getAttribute('data-en');
+                if (element !== statusText) { // A státuszt külön kezeljük
+                    if (currentLang === 'hr') {
+                        element.innerHTML = element.getAttribute('data-hr');
+                    } else {
+                        element.innerHTML = element.getAttribute('data-en');
+                    }
                 }
             });
+
+            // Státusz szöveg frissítése nyelvváltáskor
+            checkOpenStatus();
         });
+
+        // Indításkor ellenőrzés
+        checkOpenStatus();
 
         // Görgetésre beúszó animációk (Intersection Observer)
         const revealElements = document.querySelectorAll('.reveal');
