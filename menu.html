@@ -23,7 +23,25 @@
             background-color: #faf9f6;
             line-height: 1.7;
             padding-top: 90px;
+            overflow-x: hidden;
         }
+
+        /* --- Görgetési Animációs Alapok (Fade-In / Beúszás) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
 
         /* Navigáció */
         .dardin-navbar {
@@ -57,6 +75,7 @@
             color: #c5a059;
             text-decoration: none;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
         .dardin-nav-links {
@@ -233,31 +252,68 @@
             margin-bottom: 10px;
         }
 
+        /* Mobil nézet beállítások */
         @media (max-width: 768px) {
+            body {
+                padding-top: 75px;
+            }
+
+            .dardin-navbar {
+                height: 75px;
+            }
+
+            .dardin-nav-container {
+                padding: 0 20px;
+            }
+
+            .dardin-logo {
+                font-size: 1.3rem;
+            }
+
             .dardin-hamburger {
                 display: block;
             }
 
             .dardin-nav-links {
                 position: absolute;
-                top: 90px;
+                top: 75px;
                 left: 0;
                 width: 100%;
                 background: #121212;
-                border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+                border-bottom: 2px solid #c5a059;
                 flex-direction: column;
                 align-items: center;
-                gap: 25px;
-                padding: 30px 0;
+                gap: 20px;
+                padding: 40px 20px;
                 display: none;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+                text-align: center;
             }
 
             .dardin-nav-links.active {
                 display: flex;
             }
 
+            .dardin-mobile-lang-item {
+                margin-top: 10px;
+            }
+
+            .dardin-lang-btn {
+                margin: 0 auto;
+            }
+
             .menu-header h1 {
                 font-size: 2.3rem;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .item-price {
+                margin-left: 0;
             }
         }
     </style>
@@ -269,8 +325,8 @@
         <div class="dardin-nav-container">
             <a href="index.html" class="dardin-logo">Beach bar Đardin</a>
             
-            <button class="dardin-hamburger" id="hamburger-btn">
-                <i class="fa-solid fa-bars"></i>
+            <button class="dardin-hamburger" id="hamburger-btn" aria-label="Menu">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
             </button>
 
             <ul class="dardin-nav-links" id="nav-links">
@@ -279,16 +335,17 @@
                 <li><a href="index.html#reviews" data-en="Reviews" data-hr="Recenzije">Reviews</a></li>
                 <li><a href="menu.html" data-en="Menu" data-hr="Cjenik" style="color: #c5a059; font-weight: 600;">Menu</a></li>
                 <li><a href="index.html#contact" data-en="Contact" data-hr="Kontakt">Contact</a></li>
+                <li class="dardin-mobile-lang-item">
+                    <button id="lang-toggle" class="dardin-lang-btn">
+                        <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
+                    </button>
+                </li>
             </ul>
-
-            <button id="lang-toggle" class="dardin-lang-btn">
-                <i class="fa-solid fa-globe"></i> <span id="lang-text">HR</span>
-            </button>
         </div>
     </header>
 
     <!-- Fejléc -->
-    <div class="menu-header">
+    <div class="menu-header reveal">
         <h1 data-en="Our Menu" data-hr="Naš Cjenik">Our Menu</h1>
         <p data-en="Refresh yourself with our selection of drinks and cocktails by the sea." data-hr="Osvježite se našom ponudom pića i koktelića uz samo more.">Refresh yourself with our selection of drinks and cocktails by the sea.</p>
     </div>
@@ -297,7 +354,7 @@
     <div class="menu-container">
         
         <!-- Kávék -->
-        <div class="menu-category">
+        <div class="menu-category reveal delay-1">
             <h2><i class="fa-solid fa-mug-hot"></i> <span data-en="Coffee & Hot Drinks" data-hr="Kava i topli napici">Coffee & Hot Drinks</span></h2>
             
             <div class="menu-item">
@@ -324,7 +381,7 @@
         </div>
 
         <!-- Üdítők -->
-        <div class="menu-category">
+        <div class="menu-category reveal delay-2">
             <h2><i class="fa-solid fa-glass-water"></i> <span data-en="Refreshments & Juices" data-hr="Osvježenja i sokovi">Refreshments & Juices</span></h2>
             
             <div class="menu-item">
@@ -353,7 +410,7 @@
         </div>
 
         <!-- Koktélok -->
-        <div class="menu-category">
+        <div class="menu-category reveal delay-3">
             <h2><i class="fa-solid fa-martini-glass-citrus"></i> <span data-en="Signature Cocktails" data-hr="Kokteli">Signature Cocktails</span></h2>
             
             <div class="menu-item">
@@ -382,7 +439,7 @@
         </div>
 
         <!-- Sörök -->
-        <div class="menu-category">
+        <div class="menu-category reveal">
             <h2><i class="fa-solid fa-beer-mug-empty"></i> <span data-en="Beers" data-hr="Piva">Beers</span></h2>
             
             <div class="menu-item">
@@ -405,7 +462,7 @@
     </div>
 
     <!-- Vissza a főoldalra gomb -->
-    <div class="back-btn-container">
+    <div class="back-btn-container reveal">
         <a href="index.html" class="dardin-btn" data-en="&larr; Back to Home" data-hr="&larr; Povratak na početnu">&larr; Back to Home</a>
     </div>
 
@@ -417,13 +474,32 @@
 
     <!-- Script -->
     <script>
+        // Mobil hamburger menü és ikon váltás
         const hamburgerBtn = document.getElementById('hamburger-btn');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
         const navLinks = document.getElementById('nav-links');
 
         hamburgerBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-times');
+            } else {
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+            }
         });
 
+        // Kattintásra bezáródik a menü mobilon a linkekre kattintva
+        document.querySelectorAll('.dardin-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Nyelvváltó logika
         const toggleBtn = document.getElementById('lang-toggle');
         const langText = document.getElementById('lang-text');
         let currentLang = 'en';
@@ -440,6 +516,20 @@
                 }
             });
         });
+
+        // Görgetésre beúszó animációk
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>
