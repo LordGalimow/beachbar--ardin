@@ -20,12 +20,31 @@
         body {
             font-family: 'Poppins', sans-serif;
             color: #2b2b2b;
-            background-color: #faf9f6; /* Nagyon enyhe pezsgős-fehér luxus alap */
+            background-color: #faf9f6;
             line-height: 1.7;
             padding-top: 90px;
+            overflow-x: hidden;
         }
 
-        /* Luxus Üveghatású Navigációs Sáv */
+        /* --- Görgetési Animációs Alapok (Fade-In / Beúszás) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Késleltetések egymás utáni kártyáknak */
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
+
+        /* Navigációs Sáv */
         .dardin-navbar {
             position: fixed;
             top: 0;
@@ -54,7 +73,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             font-weight: 700;
-            color: #c5a059; /* Pezsgőarany */
+            color: #c5a059;
             text-decoration: none;
             letter-spacing: 1px;
         }
@@ -79,7 +98,6 @@
             color: #c5a059;
         }
 
-        /* Mobil hamburger gomb */
         .dardin-hamburger {
             display: none;
             background: none;
@@ -89,7 +107,6 @@
             cursor: pointer;
         }
 
-        /* Arany fényű nyelvváltó */
         .dardin-lang-btn {
             background: transparent;
             color: #c5a059;
@@ -111,7 +128,7 @@
             color: #121212;
         }
 
-        /* Prémium Hero Szekció */
+        /* Hero Szekció */
         .hero {
             height: 90vh;
             background: linear-gradient(rgba(18,18,18,0.5), rgba(18,18,18,0.7)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
@@ -183,7 +200,7 @@
             color: #c5a059;
         }
 
-        /* Szekciók általános */
+        /* Szekciók */
         .section {
             padding: 110px 20px;
             max-width: 1200px;
@@ -208,7 +225,7 @@
             margin: 15px auto 0;
         }
 
-        /* Státusz Kártya (Luxus) */
+        /* Státusz Kártya */
         .status-card {
             background: #ffffff;
             border-radius: 12px;
@@ -446,7 +463,7 @@
 
     <!-- Hero / Főképernyő -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-content reveal">
             <h1 data-en="Relax by the Sea" data-hr="Opustite se uz more">Relax by the Sea</h1>
             <p data-en="Your exclusive seaside sanctuary for coffee, cocktails, and sunsets in Kaštel Stari." data-hr="Vaša ekskluzivna oaza uz more za kavu, koktele i zalaske sunca u Kaštel Starom.">Your exclusive seaside sanctuary for coffee, cocktails, and sunsets in Kaštel Stari.</p>
             <div class="hero-btns">
@@ -457,20 +474,20 @@
     </section>
 
     <!-- Nyitvatartás státusz kártya -->
-    <div class="status-card">
+    <div class="status-card reveal">
         <div class="status-dot"></div>
         <div class="status-text" data-en="Open Now • Daily from 08:00 - 23:00" data-hr="Trenutno otvoreno • Svaki dan od 08:00 - 23:00">Open Now • Daily from 08:00 - 23:00</div>
     </div>
 
     <!-- About / Rólunk -->
     <section id="about" class="section">
-        <h2 class="section-title" data-en="Welcome to Đardin" data-hr="Dobrodošli u Đardin">Welcome to Đardin</h2>
+        <h2 class="section-title reveal" data-en="Welcome to Đardin" data-hr="Dobrodošli u Đardin">Welcome to Đardin</h2>
         <div class="about-grid">
-            <div class="about-text">
+            <div class="about-text reveal delay-1">
                 <p data-en="Nestled directly on the pristine coast of Kaštel Stari, Beach bar Đardin offers an elegant retreat framed by panoramic views of the Adriatic Sea." data-hr="Smješten direktno na netaknutoj obali Kaštel Starog, Beach bar Đardin nudi elegantno utočište s panoramskim pogledom na Jadransko more.">Nestled directly on the pristine coast of Kaštel Stari, Beach bar Đardin offers an elegant retreat framed by panoramic views of the Adriatic Sea.</p>
                 <p data-en="Whether you are enjoying an exquisite morning espresso beneath the coastal pines or sipping a handcrafted sunset cocktail, our dedicated team ensures an unforgettable experience." data-hr="Bilo da uživate u vrhunskom jutarnjem espressu ispod obalnih borova ili pijuckate ručno rađeni koktel uz zalazak sunca, naš posvećeni tim osigurava nezaboravno iskustvo.">Whether you are enjoying an exquisite morning espresso beneath the coastal pines or sipping a handcrafted sunset cocktail, our dedicated team ensures an unforgettable experience.</p>
             </div>
-            <div class="about-img">
+            <div class="about-img reveal delay-2">
                 <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Beach bar Đardin vibe">
             </div>
         </div>
@@ -479,20 +496,20 @@
     <!-- Galéria -->
     <section id="gallery" class="section" style="background: #f0eee6; max-width: 100%; padding-left: 20px; padding-right: 20px;">
         <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 class="section-title" data-en="Atmosphere" data-hr="Atmosfera">Atmosphere</h2>
+            <h2 class="section-title reveal" data-en="Atmosphere" data-hr="Atmosfera">Atmosphere</h2>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Bar view"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Cocktails"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Beach sunset"></div>
+                <div class="gallery-item reveal delay-1"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Bar view"></div>
+                <div class="gallery-item reveal delay-2"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Cocktails"></div>
+                <div class="gallery-item reveal delay-3"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Beach sunset"></div>
             </div>
         </div>
     </section>
 
     <!-- Értékelések -->
     <section id="reviews" class="section">
-        <h2 class="section-title" data-en="What Guests Say" data-hr="Što gosti kažu">What Guests Say</h2>
+        <h2 class="section-title reveal" data-en="What Guests Say" data-hr="Što gosti kažu">What Guests Say</h2>
         <div class="reviews-container">
-            <div class="review-card">
+            <div class="review-card reveal delay-1">
                 <div>
                     <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p class="review-text" data-en="&quot;An exquisite venue right by the sea. Exceptional service and the finest sunset views in Kaštel Stari.&quot;" data-hr="&quot;Vrhunsko mjesto uz samo more. Izuzetna usluga i najljepši pogled na zalazak sunca u Kaštel Starom.&quot;">"An exquisite venue right by the sea. Exceptional service and the finest sunset views in Kaštel Stari."</p>
@@ -500,7 +517,7 @@
                 <div class="review-author"><i class="fa-brands fa-google" style="color: #c5a059;"></i> Marko P.</div>
             </div>
 
-            <div class="review-card">
+            <div class="review-card reveal delay-2">
                 <div>
                     <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p class="review-text" data-en="&quot;A truly serene atmosphere under the trees. Impeccable drinks and supreme comfort.&quot;" data-hr="&quot;Uistinu spokojna atmosfera pod borovima. Besprijekorna pića i vrhunska udobnost.&quot;">"A truly serene atmosphere under the trees. Impeccable drinks and supreme comfort."</p>
@@ -508,7 +525,7 @@
                 <div class="review-author"><i class="fa-brands fa-google" style="color: #c5a059;"></i> Ana K.</div>
             </div>
 
-            <div class="review-card">
+            <div class="review-card reveal delay-3">
                 <div>
                     <div class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     <p class="review-text" data-en="&quot;The absolute best cocktails on the coast. A mandatory stop for every visitor.&quot;" data-hr="&quot;Apsolutno najbolji kokteli na obali. Obavezna stanica za svakog posjetitelja.&quot;">"The absolute best cocktails on the coast. A mandatory stop for every visitor."</p>
@@ -517,15 +534,15 @@
             </div>
         </div>
 
-        <div class="google-reviews-btn-box">
+        <div class="google-reviews-btn-box reveal">
             <a href="https://maps.google.com" target="_blank" class="btn-primary" data-en="Read all Google Reviews" data-hr="Pročitajte sve Google recenzije">Read all Google Reviews</a>
         </div>
     </section>
 
     <!-- Kapcsolat -->
     <section id="contact" class="section" style="padding-top: 0;">
-        <h2 class="section-title" data-en="Find Us" data-hr="Pronađite nas">Find Us</h2>
-        <div class="contact-card">
+        <h2 class="section-title reveal" data-en="Find Us" data-hr="Pronađite nas">Find Us</h2>
+        <div class="contact-card reveal">
             <div class="contact-item">
                 <i class="fa-solid fa-location-dot"></i>
                 <div>
@@ -556,8 +573,9 @@
         <p data-en="&copy; 2026 Beach bar Đardin. All rights reserved." data-hr="&copy; 2026 Beach bar Đardin. Sva prava pridržana.">&copy; 2026 Beach bar Đardin. All rights reserved.</p>
     </footer>
 
-    <!-- Script -->
+    <!-- Script a mobil menühöz, nyelvváltáshoz ÉS a beúszó animációhoz -->
     <script>
+        // Mobil hamburger menü
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const navLinks = document.getElementById('nav-links');
 
@@ -565,6 +583,7 @@
             navLinks.classList.toggle('active');
         });
 
+        // Nyelvváltó
         const toggleBtn = document.getElementById('lang-toggle');
         const langText = document.getElementById('lang-text');
         let currentLang = 'en';
@@ -581,6 +600,20 @@
                 }
             });
         });
+
+        // Görgetésre beúszó animációk (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>
